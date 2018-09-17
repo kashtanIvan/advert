@@ -64,6 +64,10 @@ class AdvertController extends Controller
 
     private function getModel($id)
     {
-        return Advert::where('id', $id)->where('user_id', Auth::id())->first();
+        $model = Advert::where('id', $id)->first();
+        if (Auth::user()->can('delete', $model)) {
+            return $model;
+        }
+        return false;
     }
 }
