@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Auth;
                         <li>Created: {{ $model->created_at->format('Y-m-d') }}</li>
                         <li style="padding-left: 50px;">Author: {{ $model->user->name }}</li>
                     </ul>
-                    @if (Auth::user()->can('delete', $model))
+                    @if (Auth::user() && Auth::user()->can('delete', $model))
                     <a class="btn pull-right" style="margin-top: -8px;" href="{{ route('advert.delete', $model->id) }}">delete</a>
                     @endif
                 </div>
